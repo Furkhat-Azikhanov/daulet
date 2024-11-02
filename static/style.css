@@ -1,0 +1,178 @@
+/* Основные стили */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Центрирование и стилизация основного контейнера */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2em;
+}
+
+.question-container, .result-container {
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #1a73e8;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+/* Стили для вопросов и кнопок */
+.option {
+    margin-bottom: 1em;
+}
+
+.option label {
+    font-size: 1em;
+    color: #555;
+}
+
+.option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.prev-button, .next-button {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.prev-button {
+    background-color: #ccc;
+    color: #888;
+    cursor: default;
+}
+
+.next-button:hover, .prev-button:hover {
+    opacity: 0.9;
+}
+
+/* Стили для страницы с результатами */
+.result-text {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 1em;
+}
+
+.description {
+    font-size: 1em;
+    color: #777;
+    margin-bottom: 1.5em;
+}
+
+.course-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1.5em;
+}
+
+.course-list li {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 0.5em;
+}
+
+.register-button {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+    background-color: #005cbf;
+}
+
+/* Медиазапросы для адаптивности */
+
+/* Для экранов шириной до 768px (планшеты и мобильные устройства) */
+@media (max-width: 768px) {
+    .question-container, .result-container {
+        padding: 1.5em;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    .result-text, .description, .course-list li {
+        font-size: 1em;
+    }
+
+    .prev-button, .next-button, .register-button {
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+}
+
+/* Для экранов шириной до 480px (мобильные устройства) */
+@media (max-width: 480px) {
+    .question-container, .result-container {
+        padding: 1em;
+        max-width: 100%;
+    }
+
+    h2 {
+        font-size: 1.2em;
+    }
+
+    .result-text, .description, .course-list li {
+        font-size: 0.9em;
+    }
+
+    .prev-button, .next-button, .register-button {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+}

@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Профориентационный тест</h2>
+<form action="{{ url_for('submit_test') }}" method="POST">
+
+    <!-- Вопросы для аналитического профиля -->
+    <div class="question">
+        <p>1. Представьте, что вам дали задачу проанализировать данные, но не дали инструкции. Вы:</p>
+        <label><input type="radio" name="question1" value="1"> Начнёте искать в интернете подходы к анализу.</label>
+        <label><input type="radio" name="question1" value="1"> Будете экспериментировать, пока не найдёте решение.</label>
+        <label><input type="radio" name="question1" value="1"> Попросите коллег объяснить задачу подробнее.</label>
+    </div>
+    <div class="question">
+        <p>2. Во время обсуждения проекта кто-то высказывает идею, с которой вы не согласны. Ваша реакция:</p>
+        <label><input type="radio" name="question2" value="1"> Предлагаете свою точку зрения с доказательствами.</label>
+        <label><input type="radio" name="question2" value="1"> Сначала выслушаете, а потом обдумаете.</label>
+        <label><input type="radio" name="question2" value="1"> Предпочтёте просто наблюдать за дальнейшим обсуждением.</label>
+    </div>
+    <div class="question">
+        <p>3. Вам предложили сложную таблицу данных без объяснений, как её использовать. Ваши действия:</p>
+        <label><input type="radio" name="question3" value="1"> Постараетесь понять структуру таблицы и искать закономерности.</label>
+        <label><input type="radio" name="question3" value="1"> Попробуете сделать гипотезы на основе цифр.</label>
+        <label><input type="radio" name="question3" value="1"> Попросите у других примеры или аналогии.</label>
+    </div>
+    <div class="question">
+        <p>4. Если бы у вас была возможность создать отчёт о сложном проекте, как бы вы к нему подошли?</p>
+        <label><input type="radio" name="question4" value="1"> Используете готовые шаблоны и фреймворки.</label>
+        <label><input type="radio" name="question4" value="1"> Придумаете свой уникальный способ представления данных.</label>
+        <label><input type="radio" name="question4" value="1"> Обсудите варианты с командой, чтобы выбрать наилучший подход.</label>
+    </div>
+    <div class="question">
+        <p>5. Ваше отношение к правилам, с которыми вы не согласны?</p>
+        <label><input type="radio" name="question5" value="1"> Оставляете их без внимания.</label>
+        <label><input type="radio" name="question5" value="1"> Анализируете и пытаетесь изменить через аргументацию.</label>
+        <label><input type="radio" name="question5" value="1"> Придерживаетесь правил, но помните про их недостатки.</label>
+    </div>
+
+    <!-- Вопросы для творческого профиля -->
+    <div class="question">
+        <p>6. Если вам предложат создать уникальный проект, который должен быть запоминающимся, ваша реакция:</p>
+        <label><input type="radio" name="question6" value="2"> Возьмётесь, если дадут чёткие рамки.</label>
+        <label><input type="radio" name="question6" value="2"> Почувствуете вдохновение и сразу начнёте придумывать концепцию.</label>
+        <label><input type="radio" name="question6" value="2"> Поделитесь идеей с коллегами и спросите их мнение.</label>
+    </div>
+    <div class="question">
+        <p>7. На пустой стене перед вами можно нарисовать что угодно. Вы:</p>
+        <label><input type="radio" name="question7" value="2"> Сначала подумаете, что бы подошло сюда лучше всего.</label>
+        <label><input type="radio" name="question7" value="2"> Сразу начнёте рисовать, не задумываясь.</label>
+        <label><input type="radio" name="question7" value="2"> Спросите, чего хотят другие, а потом добавите что-то от себя.</label>
+    </div>
+    <div class="question">
+        <p>8. Вас попросили создать презентацию для большой аудитории, как вы к этому подойдёте?</p>
+        <label><input type="radio" name="question8" value="2"> Исследуете успешные примеры для вдохновения.</label>
+        <label><input type="radio" name="question8" value="2"> Будете экспериментировать с разными стилями, пока не найдёте подходящий.</label>
+        <label><input type="radio" name="question8" value="2"> Сконсультируетесь с коллегами о том, что им больше нравится.</label>
+    </div>
+    <div class="question">
+        <p>9. Если в задании есть риск, что его не примут, вы:</p>
+        <label><input type="radio" name="question9" value="2"> Предпочтёте проработать максимально креативный вариант.</label>
+        <label><input type="radio" name="question9" value="2"> Обдумаете баланс между стандартным и новым.</label>
+        <label><input type="radio" name="question9" value="2"> Оставите основной вариант и добавите к нему несколько идей.</label>
+    </div>
+    <div class="question">
+        <p>10. Если бы вам предложили выбрать, как провести день, то как бы вы организовали его:</p>
+        <label><input type="radio" name="question10" value="2"> У вас сразу появится несколько идей, куда пойти.</label>
+        <label><input type="radio" name="question10" value="2"> Вы организуете несколько занятий, оставив время для спонтанных решений.</label>
+        <label><input type="radio" name="question10" value="2"> Предпочтёте спланировать всё и действовать по графику.</label>
+    </div>
+
+    <!-- Вопросы для социального профиля -->
+    <div class="question">
+        <p>11. Если к вам обратится незнакомый человек с просьбой, какова ваша реакция?</p>
+        <label><input type="radio" name="question11" value="3"> Сначала обдумаете, чем ему можно помочь.</label>
+        <label><input type="radio" name="question11" value="3"> Включитесь в помощь, ориентируясь на ситуацию.</label>
+        <label><input type="radio" name="question11" value="3"> Сначала подумаете, нужно ли это вам, прежде чем помогать.</label>
+    </div>
+    <div class="question">
+        <p>12. На совещании часто бывают конфликты. Вы:</p>
+        <label><input type="radio" name="question12" value="3"> Постараетесь сгладить острые углы и успокоить участников.</label>
+        <label><input type="radio" name="question12" value="3"> Попробуете найти причины конфликтов и договориться с участниками.</label>
+        <label><input type="radio" name="question12" value="3"> Будете наблюдать за дискуссией, избегая вмешательства.</label>
+    </div>
+    <div class="question">
+        <p>13. Если вам предложат обучить новичков, вы:</p>
+        <label><input type="radio" name="question13" value="3"> Сначала определите, что им будет полезно.</label>
+        <label><input type="radio" name="question13" value="3"> Начнёте с объяснений, которые легко запомнить.</label>
+        <label><input type="radio" name="question13" value="3"> Предпочтёте коротко изложить основы и дать больше свободы.</label>
+    </div>
+    <div class="question">
+        <p>14. Вас просят организовать встречу с большой группой, вы:</p>
+        <label><input type="radio" name="question14" value="3"> Сразу предлагаете темы и организацию.</label>
+        <label><input type="radio" name="question14" value="3"> Попросите всех участвовать, чтобы встреча была продуктивной.</label>
+        <label><input type="radio" name="question14" value="3"> Составите график, оставив время для обсуждений.</label>
+    </div>
+    <div class="question">
+        <p>15. При обсуждении разных мнений вы:</p>
+        <label><input type="radio" name="question15" value="3"> Постараетесь услышать все стороны.</label>
+        <label><input type="radio" name="question15" value="3"> Попробуете найти компромиссное решение.</label>
+        <label><input type="radio" name="question15" value="3"> Сфокусируетесь на наиболее логичных идеях.</label>
+    </div>
+
+    <!-- Вопросы для технического профиля -->
+    <div class="question">
+        <p>16. Какой подход вы выбрали бы для точной задачи?</p>
+        <label><input type="radio" name="question16" value="4"> Используете привычные методы.</label>
+        <label><input type="radio" name="question16" value="4"> Поэкспериментируете, чтобы найти оптимальное решение.</label>
+        <label><input type="radio" name="question16" value="4"> Обратитесь к проверенным источникам.</label>
+    </div>
+    <div class="question">
+        <p>17. Какой формат работы вам ближе: командный или одиночный?</p>
+        <label><input type="radio" name="question17" value="4"> Командный, чтобы обсуждать и улучшать идеи.</label>
+        <label><input type="radio" name="question17" value="4"> Одиночный, чтобы сконцентрироваться на задаче.</label>
+        <label><input type="radio" name="question17" value="4"> Сначала одиночный, а потом командный.</label>
+    </div>
+    <div class="question">
+        <p>18. Вам дают задачу, требующую высокой точности, как вы её решите?</p>
+        <label><input type="radio" name="question18" value="4"> Проверите несколько раз перед сдачей.</label>
+        <label><input type="radio" name="question18" value="4"> Сконцентрируетесь на технике выполнения.</label>
+        <label><input type="radio" name="question18" value="4"> Найдёте способ автоматизировать часть работы.</label>
+    </div>
+    <div class="question">
+        <p>19. Если бы вам предложили систематическую работу, вы:</p>
+        <label><input type="radio" name="question19" value="4"> Примете её, если можно будет улучшить процессы.</label>
+        <label><input type="radio" name="question19" value="4"> Предпочтёте более вариативные задачи.</label>
+        <label><input type="radio" name="question19" value="4"> Примете, так как любите порядок.</label>
+    </div>
+    <div class="question">
+        <p>20. В случае проблем с техникой или оборудованием вы:</p>
+        <label><input type="radio" name="question20" value="4"> Будете искать причину и пробовать разные решения.</label>
+        <label><input type="radio" name="question20" value="4"> Найдёте нужные инструкции и внимательно их изучите.</label>
+        <label><input type="radio" name="question20" value="4"> Попробуете справиться самостоятельно, прежде чем звать специалиста.</label>
+    </div>
+
+    <!-- Вопросы для управленческого профиля -->
+    <div class="question">
+        <p>21. Если в команде возникает спор, ваша роль:</p>
+        <label><input type="radio" name="question21" value="5"> Пытаетесь успокоить и найти компромисс.</label>
+        <label><input type="radio" name="question21" value="5"> Сформулируете чёткие решения и порядок.</label>
+        <label><input type="radio" name="question21" value="5"> Будете наблюдать и выскажетесь в конце.</label>
+    </div>
+    <div class="question">
+        <p>22. Какой стиль работы вам ближе?</p>
+        <label><input type="radio" name="question22" value="5"> Плавный и организованный.</label>
+        <label><input type="radio" name="question22" value="5"> Варьирующийся в зависимости от задач.</label>
+        <label><input type="radio" name="question22" value="5"> Постоянно планируемый и контролируемый.</label>
+    </div>
+    <div class="question">
+        <p>23. Если бы вам предложили увеличить доход компании, вы:</p>
+        <label><input type="radio" name="question23" value="5"> Поставите нестандартные цели.</label>
+        <label><input type="radio" name="question23" value="5"> Придёте с логическим подходом и планом.</label>
+        <label><input type="radio" name="question23" value="5"> Начнёте анализировать рынок и конкурентов.</label>
+    </div>
+    <div class="question">
+        <p>24. Вам нужно провести собрание по важной теме. Как вы это организуете?</p>
+        <label><input type="radio" name="question24" value="5"> Придумаете увлекательную концепцию встречи.</label>
+        <label><input type="radio" name="question24" value="5"> Начнёте с подготовки материалов и данных.</label>
+        <label><input type="radio" name="question24" value="5"> Оставите место для дискуссий и обратной связи.</label>
+    </div>
+    <div class="question">
+        <p>25. Какой подход в организации делегирования вам ближе?</p>
+        <label><input type="radio" name="question25" value="5"> Выборочные задачи отдаёте команде.</label>
+        <label><input type="radio" name="question25" value="5"> Большинство задач оставляете за собой.</label>
+        <label><input type="radio" name="question25" value="5"> Предпочитаете делегировать, если есть возможность контроля.</label>
+    </div>
+
+    <button type="submit">Посмотреть результат</button>
+</form>
+{% endblock %}

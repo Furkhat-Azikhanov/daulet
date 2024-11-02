@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="question-container">
+
+    <!-- Прогресс-бар -->
+    <div class="progress-bar">
+        <div class="progress" style="width: {{ (question_number / 25) * 100 }}%;"></div>
+    </div>
+
+    <h2>{{ question_number }}. {{ question_data.question }}</h2>
+
+    <form method="post">
+        {% for option in question_data.options %}
+            <div class="option">
+                <label>
+                    <input type="radio" name="answer" value="{{ option.value }}" required>
+                    {{ option.text }}
+                </label>
+            </div>
+        {% endfor %}
+
+        <div class="navigation-buttons">
+            {% if question_number > 1 %}
+                <button type="button" onclick="history.back()" class="prev-button">← Prev</button>
+            {% endif %}
+            <button type="submit" class="next-button">Next →</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
