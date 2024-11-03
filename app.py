@@ -5,7 +5,6 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 app.config['SESSION_TYPE'] = 'filesystem'
 Session(app)
-
 # Список из 25 вопросов с вариантами ответов и их значениями
 questions = [
     {
@@ -210,10 +209,13 @@ questions = [
     }
 ]
 
+# Корневой маршрут перенаправляет на тест
+@app.route('/')
+def index():
+    return redirect(url_for('test'))
 
-
-# Страница с вопросами
-@app.route('/', methods=['GET', 'POST'])
+# Страница с тестом (вопросами)
+@app.route('/test', methods=['GET', 'POST'])
 def test():
     if 'answers' not in session:
         session['answers'] = []
@@ -237,7 +239,6 @@ def answer():
 def results():
     profiles = {"Аналитический": 0, "Творческий": 0, "Социальный": 0, "Технический": 0, "Управленческий": 0}
     
-    # Подсчет баллов для каждого профиля
     for i, answer in enumerate(session['answers']):
         option = questions[i]['options'][answer]
         profile = option.get('profile')
@@ -246,20 +247,15 @@ def results():
         if profile:
             profiles[profile] += points
 
-    # Вывод профилей и их баллов для проверки
-    print("Профили и их баллы:", profiles)  # Для отладки, чтобы видеть распределение баллов
-
-    # Определение профиля с наибольшим количеством баллов
     profile = max(profiles, key=profiles.get)
     profile_description = get_profile_description(profile)
     recommended_courses = get_recommended_courses(profile)
 
-    # Очистка сессии после завершения теста
     session.pop('answers', None)
 
     return render_template("result.html", profile=profile, profile_description=profile_description, recommended_courses=recommended_courses)
 
-# Описание профилей
+# Функции описания профилей и рекомендованных курсов остаются без изменений
 def get_profile_description(profile):
     descriptions = {
         "Аналитический": "Вы обладаете выдающимися способностями к анализу и решению сложных задач...",
@@ -270,14 +266,23 @@ def get_profile_description(profile):
     }
     return descriptions.get(profile, "")
 
-# Рекомендованные курсы
 def get_recommended_courses(profile):
     courses = {
-        "Аналитический": [{"course": "Курс по финансовой грамотности"}],
-        "Творческий": [{"course": "Курс по графическому дизайну"}],
-        "Социальный": [{"course": "Курс по SMM"}],
-        "Технический": [{"course": "Курс по программированию"}],
-        "Управленческий": [{"course": "Курс по управлению проектами"}]
+        "Аналитический": [
+            {"course": "Перейти к результату для аналитического профиля", "link": "http://jastarsb.tilda.ws/rezultat-analitik"}
+        ],
+        "Творческий": [
+            {"course": "Перейти к результату для творческого профиля", "link": "http://jastarsb.tilda.ws/rezultat-tvorcheskij"}
+        ],
+        "Социальный": [
+            {"course": "Перейти к результату для социального профиля", "link": "http://jastarsb.tilda.ws/rezultat-socialnyj"}
+        ],
+        "Технический": [
+            {"course": "Перейти к результату для технического профиля", "link": "http://jastarsb.tilda.ws/rezultat-tekhnicheskij"}
+        ],
+        "Управленческий": [
+            {"course": "Перейти к результату для управленческого профиля", "link": "https://jastarsb.tilda.ws/rezultat-upravlencheskij"}
+        ]
     }
     return courses.get(profile, [])
 
