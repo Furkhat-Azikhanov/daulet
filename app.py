@@ -220,13 +220,8 @@ questions = [
 
 
 
-# Главная страница - перенаправление на сайт на Tilda
-@app.route('/')
-def index():
-    return redirect("question.html")  # ссылка на главную страницу на Tilda
-
 # Начало теста, переход к первому вопросу
-@app.route('/test')
+@app.route('/')
 def start_test():
     session['answers'] = []  # очищаем ответы
     session['current_question'] = 0  # устанавливаем начальный вопрос
