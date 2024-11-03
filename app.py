@@ -210,13 +210,10 @@ questions = [
     }
 ]
 
-# Главная страница
-@app.route('/')
-def index():
-    return render_template("index.html")
+
 
 # Страница с вопросами
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def test():
     if 'answers' not in session:
         session['answers'] = []
