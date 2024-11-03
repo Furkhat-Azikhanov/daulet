@@ -8,22 +8,22 @@
         <div class="progress" style="width: {{ (question_number / 25) * 100 }}%;"></div>
     </div>
 
+    <!-- Вопрос -->
     <h2>{{ question_number }}. {{ question_data.question }}</h2>
 
-    <form method="post">
+    <!-- Форма с вариантами ответа -->
+    <form method="post" action="{{ url_for('answer') }}">
         {% for option in question_data.options %}
             <div class="option">
                 <label>
-                    <input type="radio" name="answer" value="{{ option.value }}" required>
+                    <input type="radio" name="answer" value="{{ loop.index0 }}" required>
                     {{ option.text }}
                 </label>
             </div>
         {% endfor %}
-
+        
+        <!-- Кнопки навигации -->
         <div class="navigation-buttons">
-            {% if question_number > 1 %}
-                <button type="button" onclick="history.back()" class="prev-button">← Prev</button>
-            {% endif %}
             <button type="submit" class="next-button">Next →</button>
         </div>
     </form>
