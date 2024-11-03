@@ -223,7 +223,7 @@ questions = [
 # Главная страница - перенаправление на сайт на Tilda
 @app.route('/')
 def index():
-    return redirect("test.html")  # ссылка на главную страницу на Tilda
+    return redirect("question.html")  # ссылка на главную страницу на Tilda
 
 # Начало теста, переход к первому вопросу
 @app.route('/test')
